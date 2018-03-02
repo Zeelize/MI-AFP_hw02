@@ -68,7 +68,8 @@ delete _ _ = undefined
 -- | Convert @BSTree@ to list (will be in ascending order if tree is valid)
 -- TODO: implement conversion from tree to list
 toList :: BSTree a -> [a]
-toList _ = undefined
+toList Nil = []
+toList (Node x left right) = toList left ++ [x] ++ toList right
 
 -- | Build new @BSTree@ from arbitrary list with use of median (left if even)
 -- TODO: implement conversion from list to tree, use median (hint: sort)
