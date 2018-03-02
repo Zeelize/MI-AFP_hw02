@@ -44,7 +44,7 @@ isLeaf (Node x left right) = left == Nil && right == Nil
 -- | Count all nodes in @BSTree@
 -- TODO: implement counting all nodes of the tree
 size :: BSTree a -> Integer
-size _ = undefined
+size tree = toInteger (length (toList tree))
 
 -- | Height of @BSTree@ (height of @Nil@ is 0)
 -- TODO: implement finding out height of the tree
