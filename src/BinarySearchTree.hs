@@ -49,12 +49,14 @@ size tree = toInteger (length (toList tree))
 -- | Height of @BSTree@ (height of @Nil@ is 0)
 -- TODO: implement finding out height of the tree
 height :: BSTree a -> Integer
-height _ = undefined
+height Nil = 0
+height (Node x left right) = if height (left) > height (right) then height (left) + 1 else height (right) + 1
 
 -- | Minimal height in the @BSTree@ (height of @Nil@ is 0)
 -- TODO: implement finding out minimal depth of the tree
 minHeight :: BSTree a -> Integer
-minHeight _ = undefined
+minHeight Nil = 0
+minHeight (Node x left right) = if height (left) < height (right) then height (left) + 1 else height (right) + 1
 
 -- | Check if given element is in the @BSTree@
 -- TODO: implement finding out if element is in the tree
