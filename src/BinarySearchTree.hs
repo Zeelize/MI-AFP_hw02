@@ -27,8 +27,13 @@ right (Node _ _ r) = r
 
 -- | Check whether is @BSTree@ valid (i.e., does not violate any rule)
 -- TODO: implement validity check
+isSorted :: Ord a => [a] -> Bool
+isSorted [] = True
+isSorted [x] = True
+isSorted (x:xs) = x <= head (xs) && isSorted xs
+
 isValid :: Ord a => BSTree a -> Bool
-isValid _ = undefined
+isValid = isSorted . toList
 
 -- | Check whether is @BSTree@ is leaf
 -- TODO: implement leaf check
