@@ -38,7 +38,8 @@ isValid = isSorted . toList
 -- | Check whether is @BSTree@ is leaf
 -- TODO: implement leaf check
 isLeaf :: Ord a => BSTree a -> Bool
-isLeaf _ = undefined
+isLeaf Nil = False
+isLeaf (Node x left right) = left == Nil && right == Nil
 
 -- | Count all nodes in @BSTree@
 -- TODO: implement counting all nodes of the tree
