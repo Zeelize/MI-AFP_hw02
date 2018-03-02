@@ -103,6 +103,17 @@ toList (Node x left right) = toList left ++ [x] ++ toList right
 -- | Build new @BSTree@ from arbitrary list with use of median (left if even)
 -- TODO: implement conversion from list to tree, use median (hint: sort)
 fromList :: Ord a => [a] -> BSTree a
-fromList _ = undefined
+fromList [] = Nil
+fromList l = createTree (fixSortDupl l)
 
+fixSortDupl :: Ord a => [a] -> [a]
+fixSortDupl = Data.List.map Data.List.head . Data.List.group . Data.List.sort
 
+createTree :: Ord a => [a] -> BSTree a
+createTree [] = Nil
+createTree l = Node medianValue (createTree lleft) (createTree lright)
+        where
+            medianIndex = div ((length l) - 1) 2
+            medianValue = l !! medianIndex
+            lleft = take medianIndex l
+            lright = drop (medianIndex + 1) l
