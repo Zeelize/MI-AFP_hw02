@@ -63,14 +63,18 @@ minHeight (Node _ left right) = if height (left) < height (right) then height (l
 contains :: Ord a => BSTree a -> a -> Bool
 contains Nil _ = False
 contains (Node x left right) v
-    | x == v = True
+    | v == x = True
     | v < x = contains left v
     | v > x = contains right v
 
 -- | Create new tree with given element inserted
 -- TODO: implement insertion to the tree
 insert :: Ord a => BSTree a -> a -> BSTree a
-insert _ _ = undefined
+insert Nil v = Node v Nil Nil
+insert (Node x left right ) v 
+    | v == x = Node x left right
+    | v < x = Node x (insert left v) right
+    | v > x = Node x left (insert right v)
 
 -- | Create new tree with given element deleted (min element in the right subtree strategy)
 -- TODO: implement deletion from the tree
