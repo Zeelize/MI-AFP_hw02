@@ -38,8 +38,8 @@ isValid = isSorted . toList
 -- | Check whether is @BSTree@ is leaf
 -- TODO: implement leaf check
 isLeaf :: Ord a => BSTree a -> Bool
-isLeaf Nil = False
-isLeaf (Node _ left right) = left == Nil && right == Nil
+isLeaf (Node _ Nil Nil) = True
+isLeaf _ = False
 
 -- | Count all nodes in @BSTree@
 -- TODO: implement counting all nodes of the tree
@@ -56,7 +56,7 @@ height (Node _ left right) = if height (left) > height (right) then height (left
 -- TODO: implement finding out minimal depth of the tree
 minHeight :: BSTree a -> Integer
 minHeight Nil = 0
-minHeight (Node _ left right) = if height (left) < height (right) then height (left) + 1 else height (right) + 1
+minHeight (Node _ left right) = if minHeight (left) < minHeight (right) then minHeight (left) + 1 else minHeight (right) + 1
 
 -- | Check if given element is in the @BSTree@
 -- TODO: implement finding out if element is in the tree
